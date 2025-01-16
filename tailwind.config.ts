@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 4s linear infinite',
+      },
       colors: {
         main: '#155E95',
         mainAccent: '#FFD700', // not needed for shadcn components

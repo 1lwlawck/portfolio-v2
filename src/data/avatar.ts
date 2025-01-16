@@ -8,7 +8,7 @@ const AVATARS: {
   }[] = [
     {
       name: 'Deny Faishal Ard',
-      role: 'Web & Mobile Developer',
+      role: ' Junior Web & Mobile Developer',
       previewImage: '/me.png',
       alt : 'me',
       fallback : 'DF'

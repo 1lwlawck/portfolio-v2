@@ -9,7 +9,7 @@
 }
 
 body {
-  @apply dark:bg-darkBg bg-bg;
+  @apply bg-bg dark:bg-darkBg;
 }
 
 body {
@@ -33,4 +33,47 @@ body::-webkit-scrollbar-thumb {
   body {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
+}
+@keyframes walk-right {
+  0% {
+    transform: translateX(-90vw) scaleX(1); /* Mulai dari luar layar kiri, menghadap kanan */
+  }
+  100% {
+    transform: translateX(100vw) scaleX(1); /* Ke luar layar kanan, tetap menghadap kanan */
+  }
+}
+
+@keyframes walk-left {
+  0% {
+    transform: translateX(100vw) scaleX(-1); /* Mulai dari luar layar kanan, menghadap kiri */
+  }
+  100% {
+    transform: translateX(-90vw) scaleX(-1); /* Ke luar layar kiri, tetap menghadap kiri */
+  }
+}
+
+/* Animasi untuk hewan yang bergerak ke kanan */
+.animate-walk-right {
+  animation: walk-right 20s linear infinite; /* Ganti durasi sesuai kebutuhan */
+}
+
+/* Animasi untuk hewan yang bergerak ke kiri */
+.animate-walk-left {
+  animation: walk-left 20s linear infinite; /* Ganti durasi sesuai kebutuhan */
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s steps(2, start) infinite;
+  color: #155e95; /* Warna kuning */
+  font-weight: bold; /* Membuat lebih tebal */
 }
