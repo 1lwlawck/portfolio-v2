@@ -1,13 +1,10 @@
-<img src="public/preview.png" />
+<img src="public/image.png" />
 
 # Portfolio
 
 Portfolio is a neobrutalism-styled nextjs tailwind template for portfolios.
 
 ## Get started
-
-[Create a new repo](https://github.com/neobrutalism-templates/portfolio/generate) from this template.
-
 ### Installation
 
 This template uses `pnpm` package manager so make sure you have it installed.
@@ -57,6 +54,3 @@ Inside `app/work/page.tsx`  `previewImage` is wrapped inside AspectRatio compone
 I need to clarify how to edit skills since it looks confusing at first. Inside the `skills.ts` inside the `SKILLS` array, each object in the array is a field of skills (can be anything: frontend, backend, devops, design etc). Each object has a `field` prop which is the field name. Also, each object has a `skills` array where each array member has a `skill` value (used as tooltip value), and `icon` is the icon that will be displayed.
 You update them the same way you'd update links on the home page.
 
-### Styling
-
-To change the styling visit [styling docs](https://neobrutalism-components.vercel.app/docs/styling), and copy the desired styling to tailwind config like it's shown in the styling docs.
