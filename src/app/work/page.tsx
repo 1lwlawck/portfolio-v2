@@ -21,7 +21,7 @@ export default function Work() {
             {/* Gambar dengan AspectRatio */}
             <AspectRatio
               className="overflow-hidden rounded-base border-2 border-border dark:border-darkBorder"
-              ratio={16 / 9}
+              ratio={72 / 35}
             >
               <img
                 className="h-full w-full object-cover"
