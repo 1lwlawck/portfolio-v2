@@ -7,10 +7,9 @@ export default function MusicControl() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
-  const [volume, setVolume] = useState(0.5)
+  const [volume, setVolume] = useState(0.5) // Volume dalam rentang 0.0–1.0
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  // Initialize audio and event listeners
   useEffect(() => {
     if (!audioRef.current && typeof Audio !== 'undefined') {
       const audio = new Audio(
@@ -18,6 +17,7 @@ export default function MusicControl() {
       )
       audio.loop = false
       audio.volume = volume
+      audio.setAttribute('playsinline', 'true')
       audioRef.current = audio
 
       const handleMetadataLoaded = () => {
@@ -31,14 +31,20 @@ export default function MusicControl() {
       audio.addEventListener('loadedmetadata', handleMetadataLoaded)
       audio.addEventListener('timeupdate', handleTimeUpdate)
 
-      // Cleanup event listeners on unmount
       return () => {
         audio.removeEventListener('loadedmetadata', handleMetadataLoaded)
         audio.removeEventListener('timeupdate', handleTimeUpdate)
         audioRef.current = null
       }
     }
-  }, [volume]) // Re-run only if volume changes
+  }, [])
+
+  // Update volume whenever it changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume
+    }
+  }, [volume])
 
   const togglePlay = () => {
     const audio = audioRef.current
@@ -47,7 +53,14 @@ export default function MusicControl() {
     if (isPlaying) {
       audio.pause()
     } else {
-      audio.play().catch((err) => console.error('Play error:', err))
+      audio
+        .play()
+        .catch((err) =>
+          console.error(
+            'Play error (gesture required on mobile devices):',
+            err,
+          ),
+        )
     }
     setIsPlaying(!isPlaying)
   }
@@ -62,11 +75,8 @@ export default function MusicControl() {
   }
 
   const handleVolumeChange = (value: number[]) => {
-    const newVolume = value[0] / 100
-    setVolume(newVolume)
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume
-    }
+    const newVolume = value[0] / 100 // Convert from 0–100 to 0.0–1.0
+    setVolume(newVolume) // Update state
   }
 
   return (

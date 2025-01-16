@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import {
@@ -7,7 +8,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { FaPlay, FaPause, FaCog } from 'react-icons/fa'
+import { FaPlay, FaPause, FaCog, FaTimes } from 'react-icons/fa'
+import { formatTime } from '@/lib/time'
 
 type SettingsPopoverProps = {
   isPlaying: boolean
@@ -28,6 +30,12 @@ export default function SettingsPopover({
   handleSeek,
   handleVolumeChange,
 }: SettingsPopoverProps) {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false) // State to track popover status
+
+  const handleTogglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen) // Toggle popover state
+  }
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -35,17 +43,21 @@ export default function SettingsPopover({
           variant="outline"
           size="icon"
           className="rounded-full bg-yellow-500 hover:bg-yellow-600"
+          onClick={handleTogglePopover} // Update state on click
         >
-          <FaCog />
+          {isPopoverOpen ? <FaCog /> : <FaTimes />} {/* Fixed logic */}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="mr-4 w-64 bg-yellow-500 p-4 text-black">
+      <PopoverContent
+        className="mr-4 w-64 bg-yellow-500 p-4 text-black"
+        onInteractOutside={() => setIsPopoverOpen(false)} // Close popover when clicked outside
+      >
         {/* Playback Controls */}
         <div className="mb-4 flex items-center justify-between">
           <Button
             variant="outline"
             size="icon"
-            className="rounded-full bg-blue-500 text-white hover:bg-blue-600"
+            className="rounded-full bg-[#213555] text-white hover:bg-[#3E5879] hover:text-white"
             onClick={togglePlay}
           >
             {isPlaying ? <FaPause /> : <FaPlay />}
@@ -82,11 +94,4 @@ export default function SettingsPopover({
       </PopoverContent>
     </Popover>
   )
-}
-
-// Utility function to format time as minutes:seconds
-function formatTime(time: number) {
-  const minutes = Math.floor(time / 60)
-  const seconds = Math.floor(time % 60)
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 }
