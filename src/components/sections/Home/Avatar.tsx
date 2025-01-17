@@ -44,7 +44,7 @@ function AvatarWithEffects({ avatar }: { avatar: any }) {
     const timeout = setTimeout(() => {
       clearInterval(interval)
       setDisplayName(avatar.name)
-    }, 1500)
+    }, 2000)
 
     return () => {
       clearInterval(interval)

@@ -1,15 +1,8 @@
 import PROJECTS from '@/data/projects'
 import { ProjectCard } from '@/components/sections/Work/ProjectCard'
-import type { Metadata } from 'next'
+import { workMetadata } from '@/data/metadata'
 
-export const metadata: Metadata = {
-  title: 'Work | Deny Faishal Ard',
-  description: 'Welcome to the personal website of Deny Faishal Ard.',
-  icons: {
-    icon: '/src/app/favicon.ico', // Lokasi favicon
-    apple: '/apple-touch-icon.png', // Opsional: untuk perangkat Apple
-  },
-}
+export const metadata = workMetadata
 
 export default function Work() {
   return (

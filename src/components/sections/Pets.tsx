@@ -8,14 +8,14 @@ const animals = [
     alt: 'Chicken',
     direction: 'right', // Bergerak ke kanan
     size: 'h-10 w-10 sm:h-8 sm:w-8 md:h-12 md:w-12',
-    duration: '20s',
+    duration: '50s',
   },
   {
     src: '/animals/brown_walk_8fps.gif', // Snail
     alt: 'Snail',
     direction: 'left', // Bergerak ke kiri
     size: 'h-13 w-15 sm:h-10 sm:w-10 md:h-14 md:w-14',
-    duration: '50s',
+    duration: '40s',
   },
   {
     src: '/animals/white_run_8fps.gif', // White Dog

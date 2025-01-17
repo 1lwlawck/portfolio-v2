@@ -4,12 +4,10 @@ import Education from '@/components/sections/About/Education'
 import Motivation from '@/components/sections/About/Motivation'
 import Skills from '@/components/sections/Work/Skills'
 import Experience from '@/components/sections/Work/Experience'
-import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'About | Deny Faishal Ard',
-  description: 'Welcome to the personal website of Deny Faishal Ard.',
-}
+import { aboutMetadata } from '@/data/metadata'
+
+export const metadata = aboutMetadata
 
 export default function About() {
   return (
