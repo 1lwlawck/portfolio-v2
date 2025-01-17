@@ -30,22 +30,22 @@ export default function SettingsPopover({
   handleSeek,
   handleVolumeChange,
 }: SettingsPopoverProps) {
-  // Use localStorage to persist state across page transitions
+  // State untuk track popover
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
+  // Mengambil state popover dari localStorage
   useEffect(() => {
-    // Check localStorage for the stored popover state
     const storedPopoverState = localStorage.getItem('isPopoverOpen')
     if (storedPopoverState !== null) {
       setIsPopoverOpen(JSON.parse(storedPopoverState))
     }
   }, [])
 
+  // Fungsi untuk toggle popover dan menyimpan state
   const handleTogglePopover = () => {
-    // Toggle the popover and store the state in localStorage
     const newPopoverState = !isPopoverOpen
     setIsPopoverOpen(newPopoverState)
-    localStorage.setItem('isPopoverOpen', JSON.stringify(newPopoverState)) // Save state to localStorage
+    localStorage.setItem('isPopoverOpen', JSON.stringify(newPopoverState)) // Simpan state ke localStorage
   }
 
   return (
@@ -55,17 +55,17 @@ export default function SettingsPopover({
           variant="outline"
           size="icon"
           className="rounded-full bg-yellow-500 hover:bg-yellow-600"
-          onClick={handleTogglePopover}
+          onClick={handleTogglePopover} // Menangani click untuk toggle
         >
-          {isPopoverOpen ? <FaTimes /> : <FaCog />}{' '}
-          {/* Change icon based on state */}
+          {/* Ganti ikon berdasarkan status popover */}
+          {isPopoverOpen ? <FaTimes /> : <FaCog />}
         </Button>
       </PopoverTrigger>
       <PopoverContent
         className="mr-4 w-64 bg-yellow-500 p-4 text-black"
-        onInteractOutside={() => setIsPopoverOpen(false)}
+        onInteractOutside={() => setIsPopoverOpen(false)} // Menutup popover saat klik di luar
       >
-        {/* Playback Controls */}
+        {/* Kontrol Pemutaran */}
         <div className="mb-4 flex items-center justify-between">
           <Button
             variant="outline"
@@ -78,7 +78,7 @@ export default function SettingsPopover({
           <span className="text-sm">{isPlaying ? 'Playing' : 'Paused'}</span>
         </div>
 
-        {/* Timeline Slider */}
+        {/* Slider Timeline */}
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
             <span>{formatTime(currentTime)}</span>
@@ -93,7 +93,7 @@ export default function SettingsPopover({
           />
         </div>
 
-        {/* Volume Slider */}
+        {/* Slider Volume */}
         <div className="mt-4">
           <label className="mb-2 block text-sm font-medium">Volume</label>
           <Slider
