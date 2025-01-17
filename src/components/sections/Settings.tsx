@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import {
@@ -30,10 +30,22 @@ export default function SettingsPopover({
   handleSeek,
   handleVolumeChange,
 }: SettingsPopoverProps) {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false) // State to track popover status
+  // Use localStorage to persist state across page transitions
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+
+  useEffect(() => {
+    // Check localStorage for the stored popover state
+    const storedPopoverState = localStorage.getItem('isPopoverOpen')
+    if (storedPopoverState !== null) {
+      setIsPopoverOpen(JSON.parse(storedPopoverState))
+    }
+  }, [])
 
   const handleTogglePopover = () => {
-    setIsPopoverOpen(!isPopoverOpen) // Toggle popover state
+    // Toggle the popover and store the state in localStorage
+    const newPopoverState = !isPopoverOpen
+    setIsPopoverOpen(newPopoverState)
+    localStorage.setItem('isPopoverOpen', JSON.stringify(newPopoverState)) // Save state to localStorage
   }
 
   return (
@@ -43,14 +55,15 @@ export default function SettingsPopover({
           variant="outline"
           size="icon"
           className="rounded-full bg-yellow-500 hover:bg-yellow-600"
-          onClick={handleTogglePopover} // Update state on click
+          onClick={handleTogglePopover}
         >
-          {isPopoverOpen ? <FaCog /> : <FaTimes />} {/* Fixed logic */}
+          {isPopoverOpen ? <FaTimes /> : <FaCog />}{' '}
+          {/* Change icon based on state */}
         </Button>
       </PopoverTrigger>
       <PopoverContent
         className="mr-4 w-64 bg-yellow-500 p-4 text-black"
-        onInteractOutside={() => setIsPopoverOpen(false)} // Close popover when clicked outside
+        onInteractOutside={() => setIsPopoverOpen(false)}
       >
         {/* Playback Controls */}
         <div className="mb-4 flex items-center justify-between">

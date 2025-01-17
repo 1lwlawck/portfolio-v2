@@ -7,7 +7,7 @@ export const metadata = workMetadata
 export default function Work() {
   return (
     <div>
-      <h1 className="mb-8 text-2xl font-heading sm:text-4xl">Work</h1>
+      <h1 className="mb-8 text-2xl font-heading sm:text-4xl">Work ⚒️</h1>
 
       {/* Grid Layout Responsif */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">

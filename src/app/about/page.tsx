@@ -12,7 +12,7 @@ export const metadata = aboutMetadata
 export default function About() {
   return (
     <div className="font-base">
-      <h1 className="mb-8 text-2xl font-heading sm:text-4xl">About</h1>
+      <h1 className="mb-8 text-2xl font-heading sm:text-4xl">About 😎</h1>
       <Intro />
       <Education />
       <Motivation />

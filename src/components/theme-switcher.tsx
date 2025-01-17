@@ -1,20 +1,25 @@
 'use client'
 
-import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
-
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
 export function ThemeSwitcher() {
   const { setTheme, theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   return (
-    <>
-      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-        <Sun className="m500:h-4 m500:w-4 stroke-text hidden h-6 w-6 dark:inline" />
-        <Moon className="m500:h-4 m500:w-4 stroke-text inline h-6 w-6 dark:hidden" />
-        <span className="sr-only">Toggle theme</span>
-      </button>
-    </>
+    <button
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      className="text-lg"
+    >
+      {theme === 'light' ? '🌞' : '🌙'}
+      <span className="sr-only">Toggle theme</span>
+    </button>
   )
 }
