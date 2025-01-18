@@ -47,7 +47,7 @@ export function CertificatesCard({
       <motion.div
         whileInView={{ scale: 1 }}
         initial={{ scale: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.5 }}
         viewport={{ once: true }}
         className="flex flex-col justify-between rounded-lg border border-gray-300 bg-white p-5 shadow-[0px_4px_0px_rgba(4,6,0,31.1)] transition-all hover:scale-105 dark:border-gray-700 dark:bg-gray-800"
       >
