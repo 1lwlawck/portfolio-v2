@@ -22,6 +22,8 @@ import {
   SiRubyonrails,
   SiSass,
   SiTailwindcss,
+  SiSupabase,
+  SiTypescript
 } from '@icons-pack/react-simple-icons'
 
 const SKILLS: { field: string; skills: { skill: string; icon: IconType }[] }[] =
@@ -32,6 +34,7 @@ const SKILLS: { field: string; skills: { skill: string; icon: IconType }[] }[] =
         { skill: 'html', icon: SiHtml5 },
         { skill: 'css', icon: SiCss3 },
         { skill: 'javascript', icon: SiJavascript },
+        { skill: 'typescript', icon: SiTypescript },
         { skill: 'react', icon: SiReact },
         { skill: 'tailwind', icon: SiTailwindcss },
         { skill: 'nextjs', icon: SiNextdotjs },
@@ -57,8 +60,16 @@ const SKILLS: { field: string; skills: { skill: string; icon: IconType }[] }[] =
           icon: SiPhp,
         },
         {
+          skill: 'laravel',
+          icon: SiLaravel,
+        },
+        {
           skill: 'mongodb',
           icon: SiMongodb,
+        },
+        {
+          skill:'postgresql',
+          icon: SiSupabase,
         },
         {
           skill: 'mysql',
@@ -68,10 +79,7 @@ const SKILLS: { field: string; skills: { skill: string; icon: IconType }[] }[] =
           skill: 'nginx',
           icon: SiNginx,
         },
-        {
-          skill: 'laravel',
-          icon: SiLaravel,
-        },
+
       ],
     },
     {
